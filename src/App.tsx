@@ -5,8 +5,10 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
 
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+
+import 'antd/dist/antd.css';
 
 const Home = lazy(() => import('./pages/Home'));
 const History = lazy(() => import('./pages/History'));

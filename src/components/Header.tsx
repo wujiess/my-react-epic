@@ -1,7 +1,8 @@
-import React from "react";
+import { useState } from "react";
 import svgLogo from '../logo.svg';
 import { NavLink } from "react-router-dom";
 import styled from 'styled-components';
+import { Button } from 'antd';
 
 const Header = styled.header`
     display: flex;
@@ -22,16 +23,40 @@ const StyledLink = styled(NavLink)`
     }
 `;
 
+const Login = styled.div`
+    margin-left: auto;
+`;
+
+const StyledButton = styled(Button)`
+    margin-left: 10px;
+`;
 
 function Component() {
+    const [isLogin, setIsLogin] = useState(false);
+
     return (
         <Header>
             <Logo src={svgLogo} />
             <nav>
-                <StyledLink to="/" activeClassName="active">首页</StyledLink>
-                <StyledLink to="/history" activeClassName="active">上传历史</StyledLink>
-                <StyledLink to="/about" activeClassName="active">关于我</StyledLink>
+                <StyledLink to="/">首页</StyledLink>
+                <StyledLink to="/history">上传历史</StyledLink>
+                <StyledLink to="/about">关于我</StyledLink>
+                <StyledLink to="/login">登录</StyledLink>
+                <StyledLink to="/register">注册</StyledLink>
             </nav>
+            <Login>
+                {
+                    isLogin ?
+                        <>
+                            饥人谷
+                            <StyledButton type="primary" onClick={() => setIsLogin(false)}>注销</StyledButton>
+                        </> :
+                        <>
+                            <StyledButton type="primary" onClick={() => setIsLogin(true)}>登录</StyledButton>
+                            <StyledButton type="primary">注册</StyledButton>
+                        </>
+                }
+            </Login>
         </Header>
     );
 }
